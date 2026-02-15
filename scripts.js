@@ -60,3 +60,32 @@ darkBtn.addEventListener('click', () => {
 mixColorBtn.addEventListener('click', () => {
   currentColor = 'random';
 });
+
+eraseBtn.addEventListener('click', () => {
+  currentColor = 'white';
+});
+
+clearBtn.addEventListener('click', () => {
+  const cells = document.querySelectorAll('.cell');
+  cells.forEach(cell => cell.style.backgroundColor = 'white');
+});
+
+isDrawing = false;
+
+grid.addEventListener('mousedown', () => {
+  isDrawing = true;
+});
+
+grid.addEventListener('mouseup', () => {
+  isDrawing = false;
+});
+
+grid.addEventListener('mouseover', (e) => {
+  if (isDrawing && e.target.classList.contains('cell')) {
+    if (currentColor === 'random') {
+      e.target.style.backgroundColor = getRandomColor();
+    } else {
+      e.target.style.backgroundColor = currentColor;
+    }
+  }
+});
